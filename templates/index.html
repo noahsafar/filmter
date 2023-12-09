@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+<!-- Greet user -->
+    <div class="my-5 text-left">
+        <h3 class="mb-3 fw-6 text-capitalize">Welcome {{ name[0]['name'] }} <span class="wave noto">👋</span></h3>
+        <h5>Looking for a movie to watch tonight?</h5>
+    </div>
+
+<!-- Get input -->
+    <div class="form p-5">
+        <form id="filterform" action="/results" method="GET" autocomplete="off">
+        <!-- Let user add keywords to filter -->
+            <div class="mb-5">
+                <p class class="fw-normal" style="text-align: left!important;">Enter some keywords!</p>
+                <div class="px-lg-5 px-sm-0 field mb-3">
+                    <input type="text" autofocus class="border-0 me-2 form-control form-control-sm" id="keywords" name="keywords" placeholder="Enter keywords...">
+                <!-- Submit button -->
+                    <div class="text-center">
+                        <input type="submit" id="search" value="Search" class="px-5 btn btn-primary">
+                    </div>
+                </div>
+                <p class="small text-center red-text" id="validation">{{ message }}</p>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+
+{% block script%}{% endblock %}

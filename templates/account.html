@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+{% block main %}
+
+<!-- Headline -->
+    <div class="my-4 text-left">
+        <h5>Change your account information.</h5>
+    </div>
+
+<!-- Update tabs -->
+    <div class="vtabs">
+        <div class="row">
+            <div class="col-md-3 col-sm-12 px-0 py-0">
+                <ul class="nav nav-tabs left-tabs me-3 border-0" role="tablist">
+                <!-- Name update tab -->
+                    <li class="nav-item col-12" role="presentation">
+                        <div id="name-left-tab" {% if message %} class="p-3 tab-clickable active" {% else %} class="p-3 tab-clickable" {% endif %} role="tab" data-bs-toggle="tab" data-bs-target="#name-left" aria-controls="name-left" aria-selected="true">
+                            Update Name
+                        </div>
+                    </li>
+                <!-- Username update tab -->
+                    <li class="nav-item col-12" role="presentation">
+                        <div id="username-left-tab" {% if message_2 %} class="p-3 tab-clickable active" {% else %} class="p-3 tab-clickable" {% endif %} role="tab" data-bs-toggle="tab" data-bs-target="#username-left" aria-controls="username-left" aria-selected="false">
+                            Update Username
+                        </div>
+                    </li>
+                <!-- Password update tab -->
+                    <li class="nav-item col-12" role="presentation">
+                        <div id="password-left-tab" {% if message_3 %} class="p-3 tab-clickable active" {% else %} class="p-3 tab-clickable" {% endif %} role="tab" data-bs-toggle="tab" data-bs-target="#password-left" aria-controls="password-left" aria-selected="false">
+                            Update Password
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        <!-- Tab Contents -->
+            <div class="col-md-9 p-5 form">
+                <form action="/account" method="POST" autocomplete="off">
+                    <div class="p-0 container">
+                        <div id="accordion-left-tabs" class="p-0 tab-content accordion">
+                        <!-- Update Name -->
+                            <div id="name-left" {% if message %} class="tab-pane show active accordion-item" {% else %} class="tab-pane fade accordion-item" {% endif %} role="tabpanel">
+                                <div class="accordion-header" role="tab">
+                                    <button class="accordion-button collapsed" type="button" role="button" data-bs-toggle="collapse" data-bs-target="#name-left-article" aria-expanded="true" aria-controls="name-left-article">
+                                        Update Name
+                                    </button>
+                                </div>
+                                <article id="name-left-article" class="p-0 accordion-body accordion-collapse collapse" data-bs-parent="#accordion-left-tabs" aria-labelledby="name-left-tab">
+                                    <div class="h5 mb-3">Current Name:</div>
+                                    <div class="h5 lh-lg mb-3">{{ name }}</div>
+                                    <section>
+                                        <div class="small d-flex flex-wrap justify-content-between mb-3">
+                                            <input type="text" class="mb-2 border-0 form-control form-control-sm" name="change_name" id="change_name" placeholder="Enter new name" autofocus />
+                                        </div>
+                                    </section>
+                                </article>
+                            <!-- Validation -->
+                                <p class="mb-4 small fw-4 validation text-muted">{{ message }}</p>
+                                <div class="text-center mb-3">
+                                    <input type="submit" id="save_name" value="Save Changes" class="btn btn-primary px-5" />
+                                </div>
+                            </div>
+                        <!-- Update Username -->
+                            <div id="username-left" {% if message_2 %} class="tab-pane show active accordion-item" {% else %} class="tab-pane fade accordion-item" {% endif %} role="tabpanel">
+                                <div class="accordion-header" role="tab">
+                                    <button class="accordion-button collapsed" type="button" role="button" data-bs-toggle="collapse" data-bs-target="#username-left-article" aria-expanded="false" aria-controls="username-left-article">
+                                        Update Username
+                                    </button>
+                                </div>
+                                <article id="username-left-article" class="p-0 accordion-body accordion-collapse collapse" data-bs-parent="#accordion-left-tabs" aria-labelledby="username-left-tab">
+                                    <div class="h5 mb-3">Current Username:</div>
+                                    <div class="h5 lh-lg mb-3">{{ username }}</div>
+                                    <section>
+                                        <div class="small d-flex flex-wrap justify-content-between mb-3">
+                                            <input type="text" class="mb-3 border-0 form-control form-control-sm" name="change_username" id="change_username" placeholder="Enter new username" />
+                                        </div>
+                                    </section>
+                                </article>
+                            <!-- Validation -->
+                                <p class="mb-4 small fw-4 validation text-muted">{{ message_2 }}</p>
+                                <div class="text-center mb-3">
+                                    <input type="submit" id="save_username" value="Save Changes" class="btn btn-primary px-5" />
+                                </div>
+                            </div>
+                        <!-- Update password -->
+                            <div id="password-left" {% if message_3 %} class="tab-pane show active accordion-item" {% else %} class="tab-pane fade accordion-item" {% endif %} role="tabpanel">
+                                <div class="accordion-header" role="tab">
+                                    <button class="accordion-button collapsed" type="button" role="button" data-bs-toggle="collapse" data-bs-target="#password-left-article" aria-expanded="false" aria-controls="password-left-article">
+                                        Update Password
+                                    </button>
+                                </div>
+                                <article id="password-left-article" class="p-0 accordion-body accordion-collapse collapse" data-bs-parent="#accordion-left-tabs" aria-labelledby="password-left-tab">
+                                    <section>
+                                        <div class="small d-flex flex-wrap justify-content-between mb-3">
+                                            <input type="password" class="inp mb-3 border-0 form-control form-control-sm" name="old_password" id="password" placeholder="Enter current password" />
+                                            <input type="password" class="inp mb-3 border-0 form-control form-control-sm" name="new_password" id="new_password" placeholder="Enter new password" />
+                                            <input type="password" class="inp mb-3 border-0 form-control form-control-sm" name="confirm_password" id="confirm_new_password" placeholder="Confirm new password" />
+                                        </div>
+                                    </section>
+                                </article>
+                            <!-- Validation -->
+                                <p class="mb-4 small fw-4 validation text-muted">{{ message_3 }}</p>
+                                <div class="text-center mb-3">
+                                    <input type="submit" id="save_password" value="Save Changes" class="btn btn-primary px-5" disabled="disabled" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block script%}
+<script>
+    {% include 'js/enable_button.js' %}
+</script>
+{% endblock %}

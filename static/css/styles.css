@@ -1,0 +1,168 @@
+/* Set color variables */
+:root {
+    --blue: #006fb9;
+    --green: #96a536;
+    --orange: #e16f27;
+    --yellow: #ebad38;
+    --black: #141402;
+    --white: 245, 245, 245;
+    --maintransition: all 0.25s linear;
+}
+
+/* General website customizations */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+    font-style: var(--black)
+}
+
+/* Colors for link texts */
+a {
+    color: var(--blue) !important;
+    text-decoration: none !important;
+    /* Remove underline */
+}
+
+a:hover,
+a:active {
+    color: var(--green) !important;
+    transition: var(--maintransition) !important;
+}
+
+/* Implementation of orange default button */
+button,
+button:hover,
+button:active,
+.field span,
+.field span:hover,
+.field span:active,
+input[type="submit"],
+input[type="submit"]:hover,
+input[type="submit"]:active {
+    background-color: var(--orange) !important;
+}
+
+/* Default, hover, and active button border customizations */
+input[type="submit"],
+input[type="submit"]:hover,
+input[type="submit"]:active {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Hover and active button opacity */
+.orange:hover,
+.orange:active,
+button:hover,
+button:active,
+.field span:hover,
+.field span:active,
+input[type="submit"]:hover,
+input[type="submit"]:active,
+.footer:hover,
+.footer:active {
+    transition: var(--maintransition) !important;
+    opacity: 0.75;
+}
+
+/* Focus and hover shadow for input fields */
+input[type="text"]:focus,
+input[type="password"]:focus,
+.card:hover,
+input[type="submit"]:focus,
+input[type="color"]:focus {
+    border-color: rgba(20, 20, 5, 0.1);
+    box-shadow: 0 1px 1px rgba(20, 20, 5, 0.1) inset, 0 0 8px rgba(20, 20, 2, 0.2);
+    transition: var(--maintransition);
+}
+
+/* Title font customizations */
+nav .navbar-brand {
+    font-size: xxx-large;
+    font-weight: 500;
+}
+
+/* Field customizations*/
+.field {
+    display: flex;
+}
+
+/* Grey form background */
+.form,
+.active {
+    background-color: rgba(var(--white)) !important;
+}
+
+/* Font weights */
+.fw-3 {
+    font-weight: 300;
+}
+
+.fw-4 {
+    font-weight: 400;
+}
+
+.fw-5 {
+    font-weight: 500;
+}
+
+.fw-6 {
+    font-weight: 600;
+}
+
+.fw-7 {
+    font-weight: 700;
+}
+
+/* For hidden inputs for the add and remove functions */
+.hide {
+    display: none;
+}
+
+/* Monoton font */
+.monoton {
+    font-family: 'Monoton', sans-serif;
+}
+
+/* Movie container */
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+/* Google Noto emoji */
+.noto {
+    font-family: 'Noto Emoji';
+}
+
+/* Preview images (image slides) for log-in/register */
+.preview {
+    height: 35rem !important;
+    width: 25rem;
+    background-size: contain;
+    align-self: center;
+    transition: var(--maintransition);
+}
+
+/* Red error text color */
+.red-text {
+    color: red;
+}
+
+/* Wave animation for hand on welcoming page */
+.wave {
+    animation-name: waving;
+    animation-duration: 2.4s;
+    transform-origin: 75% 75%;
+    display: inline-block;
+}
+
+/* Wave animation for hand on welcoming (index) page */
+@keyframes waving {
+    /* ...Keyframe animation definitions... */
+}

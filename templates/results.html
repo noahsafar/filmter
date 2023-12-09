@@ -1,0 +1,165 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block main %}
+
+<!-- Headline -->
+    {% if movies %}
+        <div class="my-4 mb-4 text-left">
+            <h5>
+                Movies that match your filters:
+            </h5>
+        </div>
+    {% endif %}
+
+<!-- Results -->
+    <div class="form p-5">
+    <!-- Handle case of no results -->
+        {% if not movies %}
+            <div class="text-center">
+                <div class="fs-2 fw-7 text-center mb-3">No results! <span class="noto">😥</span></div>
+                <div class="fs-5">Sorry! We couldn't find any movies that match your desires...</div>
+                <div class="fs-5 mb-4">Please try again.</div>
+                <a href="/" class="fw-7 fs-4">Retry?</a>
+            </div>
+        {% else %}
+    <!-- Display search results -->
+            <div class="d-flex flex-wrap movie-container">
+                {% for movie in movies %}
+        <!-- Movie preview -->
+                    <div type="button" class="position-relative card mb-5" style="width: 13rem;" data-bs-toggle="modal" data-bs-target="#movie{{ loop.index }}">
+            <!-- Display movie image -->
+                        {% if movie['poster_path'] %}
+                            <img class="card-img-top" src="https://image.tmdb.org/t/p/w500{{ movie['poster_path'] }}">
+                        {% else %}
+            <!-- Handle no image -->
+                            <img class="card-img-top" height="310px" src="/static/images/filmter-icon.png">
+                        {% endif %}
+                        <div class="card-body" style="text-align: left!important;">
+                <!-- Display movie title -->
+                            <div class="h5 lh-sm card-text text-capitalize mb-2">{{ movie['title'] }}</div>
+                <!-- Display movie genres -->
+                            <small class="lh-1 text-uppercase d-flex flex-wrap">
+                                {% for genre_id in movie['genre_ids'] %}
+                                    <small class="fw-4 p-2 mb-1 me-1 form">{{ genre_mapping[genre_id] }}</small>
+                                {% endfor %}
+                            </small>
+                        </div>
+                    </div>
+        <!-- Bootstrap modals -->
+                    <div class="modal" id="movie{{ loop.index }}">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-body py-5 px-lg-5 px-sm-4">
+                                    <div class="row mb-3">
+                            <!-- Movie preview -->
+                                        <div class="col px-4">
+                                <!-- Display movie image -->
+                                            <div class="mb-3 d-flex justify-content-center">
+                                                {% if movie['poster_path'] %}
+                                                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w500{{ movie['poster_path'] }}">
+                                                {% else %}
+                                    <!-- Handle no image -->
+                                                    <img class="card-img-top" height="310px" src="/static/images/filmter-icon.png">
+                                                {% endif %}
+                                            </div>
+                                <!-- Display movie rating -->
+                                            <div class="small mb-4 lh-lg d-flex flex-wrap justify-content-between">
+                                    <!-- Display vote average -->
+                                                <small>
+                                                    <span class="bi bi-chat-heart-fill"></span>
+                                                    <span>Average Rating: {{ movie['vote_average'] }}</span>
+                                                </small>
+                                    <!-- Display vote count -->
+                                                <small>
+                                                    <span class="bi bi-fire"></span>
+                                                    <span>Vote Count: {{ movie['vote_count'] }}</span>
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <div class="col px-4">
+                                <!-- Display movie title -->
+                                            <div class="h4 pb-2 lh-sm text-capitalize">{{ movie['title'] }}</div>
+                                <!-- Display movie genres -->
+                                            <small class="lh-1 text-uppercase d-flex flex-wrap">
+                                                {% for genre_id in movie['genre_ids'] %}
+                                                    <small class="fw-4 p-2 mb-1 me-1 form">{{ genre_mapping[genre_id] }}</small>
+                                                {% endfor %}
+                                            </small>
+                                <!-- Display movie release date -->
+                                            <div class="small mt-3 mb-3">
+                                                <span class="bi bi-stopwatch"></span>
+                                                <span>Release: </span>
+                                                {% if movie['release_date'] %}
+                                                    <span>{{ movie['release_date'] }}</span>
+                                                {% else %}
+                                                    <span>Not available</span>
+                                                {% endif %}
+                                            </div>
+                                <!-- Display movie discription -->
+                                            <div class="mb-3">
+                                                <div class="lh-sm text-muted mb-2">Description:</div>
+                                                <small class="lh-3">
+                                                    <ul class="list-group list-group-flush mb-3">
+                                                        {% if movie['overview'] %}
+                                                            {{ movie['overview'] }}
+                                                        {% else %}
+                                                            Not available
+                                                        {% endif %}
+                                                    </ul>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                        <!-- Implementation of want-to-watch button -->
+                                    <form action="/add_watch" method="POST" class="row justify-content-center">
+                                        <div>
+                                <!-- Hidden input fields -->
+                                            <input type="hidden" name="id" value="{{ movie['id'] }}">
+                                            <input type="hidden" name="title" value="{{ movie['title'] }}">
+                                            <input type="hidden" name="poster_path" value="{{ movie['poster_path'] }}">
+                                            <input type="hidden" name="genre_ids" value="{{ movie['genre_ids'] }}">
+                                            <input type="hidden" name="overview" value="{{ movie['overview'] }}">
+                                            <input type="hidden" name="vote_average" value="{{ movie['vote_average'] }}">
+                                            <input type="hidden" name="vote_count" value="{{ movie['vote_count'] }}">
+                                            <input type="hidden" name="release_date" value="{{ movie['release_date'] }}">
+                                        </div>
+                                        <div class="col text-center">
+                                            <input type="submit" name="watchlist" id="wanttowatch" value="Want to Watch" class="px-5 btn btn-primary" {% if movie['id'] not in watchlist %} onClick="this.form.submit(); this.disabled=true;this.value='Wanttowatch';" {% else %} disabled="disabled" {% endif %}>
+                                        </div>
+                                    </form>
+
+                        <!-- Implementation of watched button -->
+                                    <form action="/add_watched" method="POST" class="row mt-3">
+                                        <div>
+                                <!-- Hidden input fields -->
+                                            <input type="hidden" name="id" value="{{ movie['id'] }}">
+                                            <input type="hidden" name="title" value="{{ movie['title'] }}">
+                                            <input type="hidden" name="poster_path" value="{{ movie['poster_path'] }}">
+                                            <input type="hidden" name="genre_ids" value="{{ movie['genre_ids'] }}">
+                                            <input type="hidden" name="overview" value="{{ movie['overview'] }}">
+                                            <input type="hidden" name="vote_average" value="{{ movie['vote_average'] }}">
+                                            <input type="hidden" name="vote_count" value="{{ movie['vote_count'] }}">
+                                            <input type="hidden" name="release_date" value="{{ movie['release_date'] }}">
+                                        </div>
+                                        <div class="col text-center">
+                                            <input type="submit" name="watchedlist" id="watched" value="Watched" class="px-5 btn btn-primary" {% if movie['id'] not in watchedlist %} onClick="this.form.submit(); this.disabled=true;this.value='Watched';" {% else %} disabled="disabled" {% endif %}>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+
+{% block script %} {% endblock%}
