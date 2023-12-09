@@ -11,7 +11,7 @@ We all know it - You want to have a spontaneous movie night with your friends bu
 
 
 ## Used Technologies
-- API (by TMDB)
+- API (by TMDb)
 - Bootstrap
 - CSS
 - Flask
@@ -23,18 +23,11 @@ We all know it - You want to have a spontaneous movie night with your friends bu
 
 ## Installation:
 Step-by-step instructions on what to install in order to get the project running.
-- Clone / fork this repository.
-- Create a virtual environment in your local Recifilter directory.
-- Install the required libraries that are listed in [requirements.txt](./requirements.txt).
-- Sign up to [TMDb API](https://developer.themoviedb.org/reference/intro/getting-started) to get your own API_ID and API_KEY.
-- Save your API_ID and API_KEY somewhere you can easily copy and paste in a format like this (replace 123456789 with your API_KEY and API_ID):
-
-```
-export API_KEY=123456789
-export API_ID=123456789
-```
-
-- Copy and paste your API_KEY and API_ID to your terminal:
+- Clone or fork this repository.
+- Create a virtual environment in your local *Filmter* directory.
+- Install the required libraries that are listed in the [requirements.txt](./requirements.txt) file.
+- Sign up to [TMDb API](https://developer.themoviedb.org/reference/intro/getting-started) to generate your own API_ID and API_KEY.
+- Save your API_ID and API_KEY and copy and paste your API_KEY and API_ID to your terminal:
 
 ```
 $ export API_KEY=123456789
@@ -171,7 +164,7 @@ By monitoring the user activity through JavaScript, the user gets logged out aut
     - [watched.html](./templates/watched.html) - Web page that displays movies that the user has marked as "Watched"; here, the user can also remove movies from the watched list
 - [app.py](./app.py) - Python code that includes all the routes and the implementation of Flask and thus, is responsible for making all of the web page's functionalities happen
 - [filmter.db](./filmter.db) - Relational database containing tables of users, their want-to-watch list, and their watched list
-- [helpers.py](./helpers.py) - Contains helper functions that ensure that the user is logged in and fetch data from TMDB's movie database API
+- [helpers.py](./helpers.py) - Contains helper functions that ensure that the user is logged in and fetch data from TMDb's movie database API
 - [requirements.txt](./requirements.txt) - Text file that contains the list of all Python libraries and modules used and imported in the program
 
 # The SQL Databases
