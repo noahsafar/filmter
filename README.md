@@ -140,7 +140,6 @@ The password, again, has to be at least 8 characters long.
 
 ## Log-Out
 The user can log out by clicking on "Log Out" in the navigation bar.
-By monitoring the user activity through JavaScript, the user gets logged out automatically after five minutes of inactivity. This time-out function is implemented through clearing the Flask session.
 
 ## Additional features
 - By monitoring the user activity through JavaScript, the user gets logged out automatically after five minutes of inactivity. This time-out function is implemented through clearing the Flask session.
