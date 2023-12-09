@@ -7,9 +7,6 @@ We all know it - You want to have a spontaneous movie night with your friends bu
 
 *Filmter* is a web application that allows users to search through a database of movies based on keywords and displays general information on each movie. In addition, *Filmter* enables users to keep track of all the movies they have watched and want to watch in the future.
 
-## Access:
-
-
 ## Used Technologies
 - API (by TMDb)
 - Bootstrap
@@ -30,8 +27,8 @@ Step-by-step instructions on what to install in order to get the project running
 - Save your API_ID and API_KEY and copy and paste them to your terminal:
 
 ```
-$ export API_KEY=123456789
-$ export API_ID=123456789
+$ export API_KEY=YOUR_API_KEY
+$ export API_ID=YOUR_API_ID
 ```
 
 - Run the application using one of the following commands in your *Filmter* directory:
