@@ -112,7 +112,6 @@ This page allows the user to change their name, username, and password. Again, v
 
 ![Account Page Name Changed](./static/images/AccountNameChanged.png)
 
-
 ### Username
 The username, again, has to consist of alphanumerical characters only
 
@@ -127,6 +126,7 @@ The password, again, has to be at least 8 characters long.
 
 ![Account Page Password](./static/images/AccountPassword.png)
 
+![Account Page Password](./static/images/AccountPasswordError.png)
 
 ## Log-Out
 The user can log out by clicking on "Log Out" in the navigation bar.
