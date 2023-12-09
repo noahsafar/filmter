@@ -27,18 +27,23 @@ Step-by-step instructions on what to install in order to get the project running
 - Create a virtual environment in your local *Filmter* directory.
 - Install the required libraries that are listed in the [requirements.txt](./requirements.txt) file.
 - Sign up to [TMDb API](https://developer.themoviedb.org/reference/intro/getting-started) to generate your own API_ID and API_KEY.
-- Save your API_ID and API_KEY and copy and paste your API_KEY and API_ID to your terminal:
+- Save your API_ID and API_KEY and copy and paste them to your terminal:
 
 ```
 $ export API_KEY=123456789
 $ export API_ID=123456789
 ```
 
-- Run the application:
+- Run the application using one of the following commands in your *Filmter* directory:
 
 ```
 $ python3 app.py
 ```
+```
+$ flask run
+```
+
+
 
 # Features
 
